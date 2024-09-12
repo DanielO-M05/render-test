@@ -3,6 +3,8 @@ const app = express();
 const path = require("path");
 const helmet = require('helmet');
 
+app.get('/favicon.ico', (req, res) => res.status(204).end());
+
 app.use(
     helmet({
       contentSecurityPolicy: {
