@@ -1,6 +1,21 @@
 const express = require("express");
 const app = express();
 const path = require("path");
+const helmet = require('helmet');
+
+app.use(
+    helmet({
+      contentSecurityPolicy: {
+        directives: {
+          defaultSrc: ["'self'"], // Allow resources from the same origin
+          imgSrc: ["'self'", 'https:'], // Allow images from same origin and over HTTPS
+          scriptSrc: ["'self'", 'https:'], // Allow scripts from same origin and over HTTPS
+          styleSrc: ["'self'", 'https:'], // Allow styles from same origin and over HTTPS
+          objectSrc: ["'none'"], // Block object embeds for security
+        },
+      },
+    })
+  );
 
 const PORT = process.env.PORT || 8080;
 
